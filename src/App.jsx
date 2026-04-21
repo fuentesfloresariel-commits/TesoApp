@@ -14,6 +14,30 @@ const CUOTA_MES     = {cuota_mar:2,cuota_abr:3,cuota_may:4,cuota_jun:5,cuota_jul
 const MESES_ES      = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const CATEGORIAS    = ["Celebraciones","Materiales","Eventos","Premios","Otros"];
 
+// ─── FUNCIÓN PARA GUARDAR EN SUPABASE ───────────────────────────────────────
+const guardarAporte = async (alumnoId, monto, tipoId, nota) => {
+  try {
+    const { data, error } = await supabase
+      .from('aportes') // Asegúrate que en Supabase la tabla se llame 'aportes'
+      .insert([
+        { 
+          sid: alumnoId, 
+          monto: parseInt(monto), 
+          tipoId: tipoId, 
+          nota: nota,
+          fecha: new Date().toISOString()
+        }
+      ]);
+
+    if (error) throw error;
+    alert("¡Aporte guardado correctamente!");
+    
+  } catch (error) {
+    console.error("Error en Supabase:", error.message);
+    alert("Error al guardar: " + error.message);
+  }
+};
+
 const TIPOS = [
   {id:"caja_chica",label:"Caja chica (una vez) - $10.000",monto:10000,nota:"Caja chica"},
   {id:"cuota_mar", label:"Cuota marzo - $5.000",          monto:5000, nota:"Cuota marzo"},
