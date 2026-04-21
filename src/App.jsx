@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react"; 
 import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
@@ -483,7 +483,7 @@ function PantallaCrearCurso({cursos, onCursoCreado, onVolver}) {
         </div>
       </div>
     </div>
-  );
+  );  
 }
 
 // ─── PANTALLA 3: ROL (admin o apoderado) ──────────────────────────────────────
